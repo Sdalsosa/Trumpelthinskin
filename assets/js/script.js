@@ -76,7 +76,7 @@ window.addEventListener("load", function() {
             this.bubbles = [];
         }
 
-        update() {
+        update(frameTime) {
             this.frame < 11 ? this.frame++ : this.frame = 0;
             if (this.game.distance > 2400) this.game.distance = 2400;
             if (this.game.keys.a.pressed && this.x >50 && this.game.distance < 2400) {
@@ -98,7 +98,7 @@ window.addEventListener("load", function() {
                 this.game.trump.fireBubble();
             }
 
-            console.log(this.game.distance);
+           // console.log(this.game.distance);
          }
         
         draw(context) {
@@ -189,8 +189,6 @@ window.addEventListener("load", function() {
                 this.velocity = -2;
             } else this.velocity = 0;
             this.x += this.velocity;
-            
-
         }
         
         draw(context) {
@@ -221,28 +219,45 @@ window.addEventListener("load", function() {
             this.background = new Background(this);
             this.trees = new Foreground(this);
             this.distance = 0;
-            this.bubbles = [];
+            this.reporters = [];
+            this.reporterTimer = 0;
+            
+
         }
 
         update() {
             this.background.update();
             this.trees.update();
             this.trump.update();
-            this.reporter.update();
+            this.reporterInterval = Math.random() * (5000 - 100);
+            if (this.reporterTimer > this.reporterInterval && this.distance <2000){
+                this.#addReporter();
+                this.reporterTimer = 0;
+            } else {
+                this.reporterTimer++;
+            }   
+            this.reporters.forEach(reporter => reporter.update());
         }
         
         draw(context) {
             this.background.draw(context);
             this.trees.draw(context);
             this.trump.draw(context);
-            this.reporter.draw(context);
+            this.reporters.forEach(reporter => reporter.draw(context));
+        }
+
+        #addReporter() {
+            this.reporters.push(new Reporter(this));
         }
     }
 
     const game = new Game(canvas.width, canvas.height);
     // Animate the canvas
-    function animate() {
+    let lastFrame = 0;
+    function animate(callback) {
         cont.clearRect(0, 0, canvas.width, canvas.height);
+        const frameTime = callback - lastFrame;
+        lastFrame = callback;
         game.update();
         game.draw(cont);
         requestAnimationFrame(animate);
