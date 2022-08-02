@@ -84,10 +84,14 @@ window.addEventListener("load", function() {
             this.x = canvas.width;
             this.y = canvas.height * 0.5;
             this.frame = 0;
+            this.velocity = -5;
+
         }
 
         update(){
             this.frame < 7 ? this.frame++ : this.frame = 0;
+            this.x += this.velocity;
+
         }
         
         draw(context){
