@@ -21,8 +21,8 @@ window.addEventListener("load", function() {
             this.image = document.getElementById('trumpSprite');
             this.width = 250;
             this.height= 175;
-            this.x = canvas.width - this.width - canvas.width/4;
-            this.y = canvas.height - this.height - canvas.height/10;
+            this.x = 50;
+            this.y = canvas.height * 0.5;
             this.frameX = 0;
         }
 
@@ -37,7 +37,25 @@ window.addEventListener("load", function() {
     }
 
     // CNN reporter sprite
-    class Cnn {
+    class Reporter {
+        constructor(game){
+            this.game = game;
+            this.image = document.getElementById('cnnSprite');
+            this.width = 231;
+            this.height= 180;
+            this.x = canvas.width - this.width;
+            this.y = canvas.height * 0.5;
+            this.frameX = 0;
+        }
+
+        update(){
+            this.frameX < 7 ? this.frameX++ : this.frameX = 0;
+
+        }
+        
+        draw(context){
+            context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+        }
         
     }
 
@@ -62,14 +80,17 @@ window.addEventListener("load", function() {
             this.width = width;
             this.height = height;
             this.trump = new Trump(this);
+            this.reporter = new Reporter(this);
         }
 
         update(){
             this.trump.update();
+            this.reporter.update();
         }
         
         draw(context){
             this.trump.draw(context);
+            this.reporter.draw(context);
         }
     }
 
