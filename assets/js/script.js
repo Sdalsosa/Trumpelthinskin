@@ -6,7 +6,7 @@ window.addEventListener("load", function() {
 
     // Detect key presses
     class Movement {
-        constructor(game){
+        constructor(game) {
             this.game = game;
             window.addEventListener("keydown", event => {
                 switch (event.key) {
@@ -17,7 +17,7 @@ window.addEventListener("load", function() {
                         this.game.keys.d.pressed = true
                         break
                     case ' ':
-                        this.game.keys.space.pressed = true
+                        this.game.keys.space.pressed = true;
                         break  
                   }
             })
@@ -34,19 +34,37 @@ window.addEventListener("load", function() {
                         break  
                   }
             })
-            
         }
-
     }
 
     // Trumpelthinskins weapon
-    class Speechbubble {
-        
+    class Bubble {
+        constructor(game, x, y) {
+            this.game = game;
+            this.image = document.getElementById('bubbleSprite');
+            this.x = x + 150;
+            this.y = y;
+            this.width = 100;
+            this.height = 100;
+            this.velocity = 5;
+            this.frame = 0;
+        }
+
+        update() {
+            this.frame < 7 ? this.frame++ : this.frame = 0;
+            this.x += this.velocity;
+        }
+
+        draw(context) {
+            context.drawImage(this.image, this.frame * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+
+
+        }
     }
 
     // Trumpelthinskin sprite
     class Trump {
-        constructor(game){
+        constructor(game) {
             this.game = game;
             this.image = document.getElementById('trumpSprite');
             this.width = 250;
@@ -55,9 +73,10 @@ window.addEventListener("load", function() {
             this.y = (canvas.height - this.height) *.82;
             this.frame = 0;
             this.velocity = 0;
+            this.bubbles = [];
         }
 
-        update(){
+        update() {
             this.frame < 11 ? this.frame++ : this.frame = 0;
             if (this.game.distance > 2400) this.game.distance = 2400;
             if (this.game.keys.a.pressed && this.x >50 && this.game.distance < 2400) {
@@ -71,17 +90,32 @@ window.addEventListener("load", function() {
             } else if (this.game.keys.a.pressed && this.game.distance > 0) {
                 this.game.distance -= 2;
             }
+
+            this.bubbles.forEach(bubble => {
+                bubble.update();
+            });
+            if (this.game.keys.space.pressed){
+                this.game.trump.fireBubble();
+            }
+
             console.log(this.game.distance);
          }
         
-        draw(context){
+        draw(context) {
             context.drawImage(this.image, this.frame * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+            this.bubbles.forEach(bubble => {
+                bubble.draw(context);
+            })
+        }
+
+        fireBubble() {
+            this.bubbles.push(new Bubble(this.game, this.x, this.y));
         }
     }
 
     // CNN reporter sprite
     class Reporter {
-        constructor(game){
+        constructor(game) {
             this.game = game;
             this.image = document.getElementById('cnnSprite');
             this.width = 231;
@@ -93,7 +127,7 @@ window.addEventListener("load", function() {
 
         }
 
-        update(){
+        update() {
             this.frame < 7 ? this.frame++ : this.frame = 0;
             this.x += this.velocity;
             if (this.game.keys.d.pressed) {
@@ -111,7 +145,7 @@ window.addEventListener("load", function() {
 
     // Front scenery images
     class Foreground {
-        constructor(game){
+        constructor(game) {
             this.game = game;
             this.image = document.getElementById('trees');
             this.width = 6000;
@@ -120,7 +154,7 @@ window.addEventListener("load", function() {
             this.y = 0;
         }
 
-        update(){
+        update() {
             if (this.game.keys.a.pressed && this.game.distance>0 && this.game.distance <2400) {
                 this.velocity = 4;
             } else if (this.game.keys.d.pressed && this.game.distance <2400) {
@@ -131,7 +165,7 @@ window.addEventListener("load", function() {
 
         }
         
-        draw(context){
+        draw(context) {
             context.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
         }
         
@@ -139,7 +173,7 @@ window.addEventListener("load", function() {
 
     // Background image
     class Background {
-        constructor(game){
+        constructor(game) {
             this.game = game;
             this.image = document.getElementById('bgImage');
             this.width = 6000;
@@ -148,7 +182,7 @@ window.addEventListener("load", function() {
             this.y = 0;
         }
 
-        update(){
+        update() {
             if (this.game.keys.a.pressed && this.game.distance>0 && this.game.distance <2400) {
                 this.velocity = 2;
             } else if (this.game.keys.d.pressed && this.game.distance <2400) {
@@ -159,7 +193,7 @@ window.addEventListener("load", function() {
 
         }
         
-        draw(context){
+        draw(context) {
             context.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
         }
         
@@ -167,7 +201,7 @@ window.addEventListener("load", function() {
 
     // Main game code
     class Game {
-        constructor(width, height){
+        constructor(width, height) {
             this.width = width;
             this.height = height;
             this.trump = new Trump(this);
@@ -187,16 +221,17 @@ window.addEventListener("load", function() {
             this.background = new Background(this);
             this.trees = new Foreground(this);
             this.distance = 0;
+            this.bubbles = [];
         }
 
-        update(){
+        update() {
             this.background.update();
             this.trees.update();
             this.trump.update();
             this.reporter.update();
         }
         
-        draw(context){
+        draw(context) {
             this.background.draw(context);
             this.trees.draw(context);
             this.trump.draw(context);
