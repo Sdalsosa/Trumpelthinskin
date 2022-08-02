@@ -76,7 +76,7 @@ window.addEventListener("load", function() {
             this.bubbles = [];
         }
 
-        update(frameTime) {
+        update() {
             this.frame < 11 ? this.frame++ : this.frame = 0;
             if (this.game.distance > 2400) this.game.distance = 2400;
             if (this.game.keys.a.pressed && this.x >50 && this.game.distance < 2400) {
@@ -97,8 +97,6 @@ window.addEventListener("load", function() {
             if (this.game.keys.space.pressed){
                 this.game.trump.fireBubble();
             }
-
-           // console.log(this.game.distance);
          }
         
         draw(context) {
@@ -161,8 +159,6 @@ window.addEventListener("load", function() {
                 this.velocity = -4;
             } else this.velocity = 0;
             this.x += this.velocity;
-            
-
         }
         
         draw(context) {
@@ -233,6 +229,7 @@ window.addEventListener("load", function() {
                 reporter.update();
                 if (this.collisionDetect(this.trump, reporter)) {
                     reporter.removeFromArray = true;
+                    this.gameOver = true;
                 }
                 this.trump.bubbles.forEach(bubble => {
                     if (this.collisionDetect(bubble, reporter)) {
@@ -241,7 +238,6 @@ window.addEventListener("load", function() {
                 })
             });
             this.reporters = this.reporters.filter(reporter => !reporter.removeFromArray);
-
         }
         
         draw(context) {
@@ -249,6 +245,14 @@ window.addEventListener("load", function() {
             this.trees.draw(context);
             this.trump.draw(context);
             this.reporters.forEach(reporter => reporter.draw(context));
+            if (this.gameOver) {
+                context.drawImage(document.getElementById('lose'), 0, 0, this.width, this.height, 0, 0, this.width, this.height);
+            }
+            if (this.distance >2300){
+                context.drawImage(document.getElementById('win'), 0, 0, this.width, this.height, 0, 0, this.width, this.height);
+
+            };
+            
         }
 
         #addReporter() {
