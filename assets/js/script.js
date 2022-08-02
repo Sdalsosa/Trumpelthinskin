@@ -1,8 +1,8 @@
 window.addEventListener("load", function() {
     const canvas = document.querySelector("canvas");
     const cont = canvas.getContext("2d");
-    canvas.width = window.innerWidth/2;
-    canvas.height = window.innerHeight/2
+    canvas.height = 768;
+    canvas.width = 1200;
 
     // Detect key presses
     class Movement {
@@ -52,16 +52,16 @@ window.addEventListener("load", function() {
             this.width = 250;
             this.height= 175;
             this.x = 50;
-            this.y = canvas.height * 0.5;
+            this.y = (canvas.height - this.height) *.82;
             this.frame = 0;
             this.velocity = 0 ;
         }
 
         update(){
             this.frame < 11 ? this.frame++ : this.frame = 0;
-            if (this.game.keys.a.pressed) {
+            if (this.game.keys.a.pressed && this.x >50) {
                 this.velocity = -5;
-            } else if (this.game.keys.d.pressed) {
+            } else if (this.game.keys.d.pressed && this.x < canvas.width/2) {
                 this.velocity = 5;
             } else this.velocity = 0;
             this.x += this.velocity;
@@ -82,14 +82,18 @@ window.addEventListener("load", function() {
             this.width = 231;
             this.height= 180;
             this.x = canvas.width;
-            this.y = canvas.height * 0.5;
+            this.y = (canvas.height - this.height) *.82;
             this.frame = 0;
-            this.velocity = -5;
+            this.velocity = -2;
 
         }
 
         update(){
             this.frame < 7 ? this.frame++ : this.frame = 0;
+            this.x += this.velocity;
+            if (this.game.keys.d.pressed) {
+                this.velocity = -3;
+            } else this.velocity = -2;
             this.x += this.velocity;
 
         }
@@ -107,6 +111,27 @@ window.addEventListener("load", function() {
 
     // Background image
     class Background {
+        constructor(game){
+            this.game = game;
+            this.image = document.getElementById('bgImage');
+            this.width = 3000;
+            this.height= 768;
+            this.x = 0;
+            this.y = 0;
+        }
+
+        update(){
+            if (this.game.keys.d.pressed) {
+                this.velocity = -2;
+            } else this.velocity = 0;
+            this.x += this.velocity;
+            
+
+        }
+        
+        draw(context){
+            context.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+        }
         
     }
 
@@ -134,14 +159,17 @@ window.addEventListener("load", function() {
                     pressed: false
                   }
             }
+            this.background = new Background(this);
         }
 
         update(){
+            this.background.update();
             this.trump.update();
             this.reporter.update();
         }
         
         draw(context){
+            this.background.draw(context);
             this.trump.draw(context);
             this.reporter.draw(context);
         }

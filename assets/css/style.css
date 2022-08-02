@@ -17,6 +17,7 @@ body {
     transform: translate(-50%, -50%);
     background: azure;
     box-shadow: 10px 10px 8px 10px rgb(61, 61, 61);
+    image-rendering: pixelated;
 }
 
 img {
