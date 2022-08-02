@@ -6,6 +6,36 @@ window.addEventListener("load", function() {
 
     // Detect key presses
     class Movement {
+        constructor(game){
+            this.game = game;
+            window.addEventListener("keydown", event => {
+                switch (event.key) {
+                    case 'a':
+                        this.game.keys.a.pressed = true
+                        break
+                    case 'd':
+                        this.game.keys.d.pressed = true
+                        break
+                    case ' ':
+                        this.game.keys.space.pressed = true
+                        break  
+                  }
+            })
+            window.addEventListener("keyup", event => {
+                switch (event.key) {
+                    case 'a':
+                        this.game.keys.a.pressed = false
+                        break
+                    case 'd':
+                        this.game.keys.d.pressed = false
+                        break
+                    case ' ':
+                        this.game.keys.space.pressed = false
+                        break  
+                  }
+            })
+            
+        }
 
     }
 
@@ -23,16 +53,24 @@ window.addEventListener("load", function() {
             this.height= 175;
             this.x = 50;
             this.y = canvas.height * 0.5;
-            this.frameX = 0;
+            this.frame = 0;
+            this.velocity = 0 ;
         }
 
         update(){
-            this.frameX < 11 ? this.frameX++ : this.frameX = 0;
+            this.frame < 11 ? this.frame++ : this.frame = 0;
+            if (this.game.keys.a.pressed) {
+                this.velocity = -5;
+            } else if (this.game.keys.d.pressed) {
+                this.velocity = 5;
+            } else this.velocity = 0;
+            this.x += this.velocity;
+            
 
         }
         
         draw(context){
-            context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+            context.drawImage(this.image, this.frame * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
         }
     }
 
@@ -43,18 +81,17 @@ window.addEventListener("load", function() {
             this.image = document.getElementById('cnnSprite');
             this.width = 231;
             this.height= 180;
-            this.x = canvas.width - this.width;
+            this.x = canvas.width;
             this.y = canvas.height * 0.5;
-            this.frameX = 0;
+            this.frame = 0;
         }
 
         update(){
-            this.frameX < 7 ? this.frameX++ : this.frameX = 0;
-
+            this.frame < 7 ? this.frame++ : this.frame = 0;
         }
         
         draw(context){
-            context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+            context.drawImage(this.image, this.frame * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
         }
         
     }
@@ -81,6 +118,18 @@ window.addEventListener("load", function() {
             this.height = height;
             this.trump = new Trump(this);
             this.reporter = new Reporter(this);
+            this.move = new Movement(this);
+            this.keys = {
+                a: {
+                    pressed: false
+                  },
+                d: {
+                    pressed: false
+                  },
+                space: {
+                    pressed: false
+                  }
+            }
         }
 
         update(){
