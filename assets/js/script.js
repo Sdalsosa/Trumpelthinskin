@@ -54,20 +54,25 @@ window.addEventListener("load", function() {
             this.x = 50;
             this.y = (canvas.height - this.height) *.82;
             this.frame = 0;
-            this.velocity = 0 ;
+            this.velocity = 0;
         }
 
         update(){
             this.frame < 11 ? this.frame++ : this.frame = 0;
-            if (this.game.keys.a.pressed && this.x >50) {
-                this.velocity = -5;
-            } else if (this.game.keys.d.pressed && this.x < canvas.width/2) {
-                this.velocity = 5;
+            if (this.game.distance > 2400) this.game.distance = 2400;
+            if (this.game.keys.a.pressed && this.x >50 && this.game.distance < 2400) {
+                this.velocity = -2;
+            } else if (this.game.keys.d.pressed && this.x < canvas.width / 2 - this.width && this.game.distance < 2400) {
+                this.velocity = 2;
             } else this.velocity = 0;
             this.x += this.velocity;
-            
-
-        }
+            if (this.game.keys.d.pressed) {
+                this.game.distance += 2;
+            } else if (this.game.keys.a.pressed && this.game.distance > 0) {
+                this.game.distance -= 2;
+            }
+            console.log(this.game.distance);
+         }
         
         draw(context){
             context.drawImage(this.image, this.frame * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
@@ -92,7 +97,7 @@ window.addEventListener("load", function() {
             this.frame < 7 ? this.frame++ : this.frame = 0;
             this.x += this.velocity;
             if (this.game.keys.d.pressed) {
-                this.velocity = -3;
+                this.velocity = -4;
             } else this.velocity = -2;
             this.x += this.velocity;
 
@@ -106,23 +111,20 @@ window.addEventListener("load", function() {
 
     // Front scenery images
     class Foreground {
-        
-    }
-
-    // Background image
-    class Background {
         constructor(game){
             this.game = game;
-            this.image = document.getElementById('bgImage');
-            this.width = 3000;
+            this.image = document.getElementById('trees');
+            this.width = 6000;
             this.height= 768;
             this.x = 0;
             this.y = 0;
         }
 
         update(){
-            if (this.game.keys.d.pressed) {
-                this.velocity = -2;
+            if (this.game.keys.a.pressed && this.game.distance>0 && this.game.distance <2400) {
+                this.velocity = 4;
+            } else if (this.game.keys.d.pressed && this.game.distance <2400) {
+                this.velocity = -4;
             } else this.velocity = 0;
             this.x += this.velocity;
             
@@ -135,8 +137,31 @@ window.addEventListener("load", function() {
         
     }
 
-    // Score counter and display
-    class Score {
+    // Background image
+    class Background {
+        constructor(game){
+            this.game = game;
+            this.image = document.getElementById('bgImage');
+            this.width = 6000;
+            this.height= 768;
+            this.x = 0;
+            this.y = 0;
+        }
+
+        update(){
+            if (this.game.keys.a.pressed && this.game.distance>0 && this.game.distance <2400) {
+                this.velocity = 2;
+            } else if (this.game.keys.d.pressed && this.game.distance <2400) {
+                this.velocity = -2;
+            } else this.velocity = 0;
+            this.x += this.velocity;
+            
+
+        }
+        
+        draw(context){
+            context.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+        }
         
     }
 
@@ -160,16 +185,20 @@ window.addEventListener("load", function() {
                   }
             }
             this.background = new Background(this);
+            this.trees = new Foreground(this);
+            this.distance = 0;
         }
 
         update(){
             this.background.update();
+            this.trees.update();
             this.trump.update();
             this.reporter.update();
         }
         
         draw(context){
             this.background.draw(context);
+            this.trees.draw(context);
             this.trump.draw(context);
             this.reporter.draw(context);
         }
