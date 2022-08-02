@@ -206,24 +206,17 @@ window.addEventListener("load", function() {
             this.reporter = new Reporter(this);
             this.move = new Movement(this);
             this.keys = {
-                a: {
-                    pressed: false
-                  },
-                d: {
-                    pressed: false
-                  },
-                space: {
-                    pressed: false
-                  }
+                a: { pressed: false },
+                d: { pressed: false },
+                space: { pressed: false }
             }
             this.background = new Background(this);
             this.trees = new Foreground(this);
             this.distance = 0;
             this.reporters = [];
             this.reporterTimer = 0;
-            
-
-        }
+            this.gameOver = false;
+         }
 
         update() {
             this.background.update();
@@ -236,7 +229,19 @@ window.addEventListener("load", function() {
             } else {
                 this.reporterTimer++;
             }   
-            this.reporters.forEach(reporter => reporter.update());
+            this.reporters.forEach(reporter => {
+                reporter.update();
+                if (this.collisionDetect(this.trump, reporter)) {
+                    reporter.removeFromArray = true;
+                }
+                this.trump.bubbles.forEach(bubble => {
+                    if (this.collisionDetect(bubble, reporter)) {
+                        reporter.removeFromArray = true;
+                    }
+                })
+            });
+            this.reporters = this.reporters.filter(reporter => !reporter.removeFromArray);
+
         }
         
         draw(context) {
@@ -248,6 +253,13 @@ window.addEventListener("load", function() {
 
         #addReporter() {
             this.reporters.push(new Reporter(this));
+        }
+
+        collisionDetect(obj1, obj2) {
+            return( obj1.x < obj2.x + obj2.width-100 &&
+                    obj2.x < obj1.x + obj1.width -100 &&
+                    obj1.y < obj2.y + obj2.height && 
+                    obj2.y < obj1.y + obj1.height)
         }
     }
 
