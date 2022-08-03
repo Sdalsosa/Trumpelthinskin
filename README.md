@@ -41,7 +41,7 @@ Trumplethinskin is a satirical game created with JavaScript depicting Donald Tru
 
 # Objective:
 
-To design a clean, intuitive, funny, retro style and fully responsive game in JavaScript.
+To design a clean, intuitive, funny, retro style and fully responsive game in JavaScript for devices with keyboards.
 
 The three main objectives are:
 
@@ -78,28 +78,21 @@ Trumpelthinskin is a simple and clean layout with a canvas and some basic instru
 
 ## Colour Scheme
 
-![Colour-scheme](docs/images/coolor.png)
+![Colour-scheme](docs/img/coolor.jpg)
 
-The colour scheme used for this project was chosen from using a dropper tool in photoshop 
-on one of the headshot images to maintain a similar aesthetic between  the website and 
-headshot images. [Coolor](https://coolors.co/ffffff-e3e6e8-b88845-2a2a2d-141519).
+The colour scheme used for this project was only two colors to maintain a retro style and not take focus from the game itself. [Coolor](https://coolors.co/ffffff-808080)
 
 * White `#FFFFFF`
-* Platinum `#E3E6E8`
-* Dark Goldenrod `#B88845`
-* Raisin Black `2A2A2D`
-* Eerie Black `#141519`
+* Web Grey `#808080`
 
 ## Typography
 
-I chose the font **Player** for the headings and the font **Inter**  for all other text content 
-in the website as I liked the clean look of both fonts.
+I chose the font **Press Start 2P** for the game as it suited the retro feel.
 
 The fonts were sourced from [Google Fonts](https://fonts.google.com/).
 
 ## Imagery
 
-All photos were taken by me, the photographer and the logo was designed by me in photoshop. 
 Readme images were screenshot from mentioned sites and wireframes were created in photoshop.
 
 ## Wireframes
@@ -110,111 +103,65 @@ Wireframes were created for both mobile and desktop.
 
 ![Desktop Wireframe](docs/images/wireframe-desktop.jpg)
 
-![Mobile Wireframe](docs/images/wireframe-mobile.jpg)
-
 </details>
 
 [Back to top](<#contents>)
 
 # Features
 
-Headshot is designed as a one page structured website, making it very clean and logically laid out 
-so the user clearly knows what the site is about and what services they can avail of.
+Trumpelthinskin is designed as a one page web browser game, making it very clean and logically laid out 
+so the user clearly knows what the site is about.
 
-The language is easy to understand and the navigation is intuitive with a consistent color scheme 
-that adds to the style of the photographers photos.
+The language is easy to understand and the game is intuitive with a consistent color scheme 
+that adds to the style of the retro game.
 
 This is a fully responsive website. 
 
 ## Game Load
 
-When viewing the main page on a desktop, there is a navbar present which has 6 links to the sections of the website.
-
-![Desktop navbar](docs/images/navbar.png)
-
-When viewing the main page on a mobile device, the navbar disappears.
-
-There is a hamburger menu showing at all times on all devices at the top left of the screen. This contains 6 links 
-to the different sections of the website. 
-
-The hamburger menu was modified from code created by [Álvaro](https://codepen.io/alvarotrigo/pen/wvrzPWL)
-
-![Responsive hamburger menu](docs/images/hamburger.png)
+The game loads automatically when the site is accessed.
 
 ## Trump Sprite
 
-The Main section is accessible from both the Navbar and the hamburger menu from the HOME link.
+The main character in the game is Donald. His sprite consists of 12 images that are used to make the run animation.
 
-The Main Section is the landing page of the website and the first part that the user will see.
-
-There is a large background image with the logo, name and brief description of what the site is about overlayed.
-
-There is a scroll down animation hint on the bottom left of the main screen to entice the user to scroll down 
-through the site. 
-
-The scroll down animation was modified from code created by [Deepak K Vijayan](https://codepen.io/2xsamurai/pen/WwmjKQ)
-
-![Home page desktop view](docs/images/main.png)
+![Trump Sprite](assets/img/run.png)
 
 ## Reporter Sprite
 
-The About section is accessible from both the Navbar and the hamburger menu from the ABOUT link.
+Reporters are one of Trumps biggest fears, they come at him to tell him his ratings are down. Here is an 8 image sprite to make the walking animation
 
-This section contains a headshot photo of the photographer and a description of them so the user 
-can get to know them and understand their style of photography.
-
-![About Section desktop view](docs/images/about.png)
+![Reporter Sprite](assets/img/cnn1.png)
 
 ## Speech Bubble Sprite
 
-The Gallery section is accessible from both the Navbar and the hamburger menu from the Gallery link.
+This is Trumps weapon against the reporters, a "Fake News" speech bubble that he first at them to make them disappear. The sprite consists of 8 images
 
-This section contains 6 images that have a hover animation.
-
-![Gallery Section desktop view](docs/images/gallery.png)
-
-There is also a lightbox implemented with CSS that appears when the images are clicked to give a higher 
-resolution image to the user. 
-
-The gallery Lightbox was modified from code created by [Kevin Powell](https://codepen.io/kevinpowell/pen/LgMLao)
-
-![Gallery Lightbox desktop view](docs/images/gallery-lightbox.png)
+![Speech Bubble Sprite](assets/img/bubble.png)
 
 ## Multiple Reporters
 
-This section has an explanation of what retouching is and also a before/after slider created in CSS. 
-Before/After slider was modified from code created by [Lea Varou](https://lea.verou.me/2014/07/image-comparison-slider-with-pure-css/) 
-
-![Retouch Section desktop view](docs/images/retouch.png)
+An array was created for the reporters and adds to it as they are created. Once they are hit by the speech bubble, they are removed from the array
 
 ## Background Image
 
-This section contains three testimonials from previous clients of Headshot Photography.
+The background contains a cityscape. This moves at a slower speed than the background which creates a parallax effect and a sense of depth.
 
-![Testimonial Section desktop view](docs/images/testimonial.png)
+![Background](assets/img/background.jpg)
 
 ## Foreground Image
 
-The contact section has a google map, contact information, and a contact form in which the user 
-can contact the photographer with a message.
+The foreground contains the ground, trees and The White House. This moves at a faster speed than the background which creates a parallax effect and a sense of depth.
 
-The form currently submits to the Code Institute form dump.
-
-![Contact Section desktop view](docs/images/contact.png)
+![Foreground](assets/img/trees.png)
 
 ## Collision Detection
 
-The footer contains the social media icons that link to the main sites as headshot does not 
-have profiles on social media.
-
-![Footer desktop view](docs/images/footer.png)
+The code detects if a speech bubble hits a reporter and makes them disappear. It also detects if a reporter hits trump and ends the game.
 
 ## Win and Lose Detection
 
-The footer contains the social media icons that link to the main sites as headshot does not 
-have profiles on social media.
-
-![Footer desktop view](docs/images/footer.png)
+The code handles a win scenario when Donald makes it to the White House and a lose scenario when he gets hit by a reporter.
 
 [Back to top](<#contents>)
 
@@ -272,13 +219,11 @@ This led to many issues being identified.
 
 ## Bugs
 
-* The google map also presented an issue with responsiveness. It doesn't have any responsiveness as the dimensions are set in the iframe. For this reason. I created two divs and have one set to shown and the other set to hidden. On larger screen sizes, the div containing the larger map is shown and the smaller map div is hidden. On smaller screen sizes, the div with the small map is shown and the larger one is hidden. This solved the issue.
-
-* The before/after slider also does not have responsiveness so I had to use a media query to set the images width manually in order for it to fit in smaller devices.
+* 
 
 ## Unfixed Bugs
 
-Due to the fact that I chose to use only HTML and CSS as that is what this project is being graded on, there are better ways to implement features such as the slider in the retouch section and the lightbox in the gallery section. These are not necessarily bugs, more so, opportunities for improvement using JS.
+* 
 
 ## Validator Testing 
 
@@ -293,7 +238,7 @@ The website was also put through Lighthouse testing and passed all tests with a 
 
 <details><summary> Lighthouse Results </summary>
 
-![Lighthouse testing](docs/images/lighthouse.png)
+![Lighthouse testing](docs/img/lighthouse.png)
 
 </details>
 
@@ -307,7 +252,7 @@ There was a recommendation relating to images not having a width and height. Ima
 
 The website was also put through colour contrast accessibility validator testing and passed with no contrast issues.
 
-![Color Contrast testing](docs/images/ccav.jpg)
+![Color Contrast testing](docs/img/ccav.jpg)
 
 [Back to top](<#contents>)
 

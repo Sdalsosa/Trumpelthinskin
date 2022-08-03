@@ -75,6 +75,8 @@ window.addEventListener("load", function() {
             this.frame = 0;
             this.velocity = 0;
             this.bubbles = [];
+            this.bubbleTimer = 0;
+            this.bubbleInterval = 5;
         }
 
         update() {
@@ -95,8 +97,15 @@ window.addEventListener("load", function() {
             this.bubbles.forEach(bubble => {
                 bubble.update();
             });
+            
             if (this.game.keys.space.pressed){
+            if (this.bubbleTimer > this.bubbleInterval){
                 this.game.trump.fireBubble();
+                this.bubbleTimer = 0;
+            } else {
+                this.bubbleTimer++;
+            }   
+                
             }
          }
         
