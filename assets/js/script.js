@@ -52,7 +52,7 @@ window.addEventListener("load", function() {
         }
 
         update() {
-            this.frame < 7 ? this.frame++ : this.frame = 0;
+            this.frame < 7 ? this.frame++ : (this.frame = 0);
             this.x += this.velocity;
         }
 
@@ -97,6 +97,7 @@ window.addEventListener("load", function() {
             this.bubbles.forEach(bubble => {
                 bubble.update();
             });
+            this.bubbles = this.bubbles.filter(bubble => !bubble.removeFromArray);
             
             if (this.game.keys.space.pressed){
             if (this.bubbleTimer > this.bubbleInterval){
@@ -282,10 +283,8 @@ window.addEventListener("load", function() {
     const game = new Game(canvas.width, canvas.height);
     // Animate the canvas
     let lastFrame = 0;
-    function animate(callback) {
+    function animate() {
         cont.clearRect(0, 0, canvas.width, canvas.height);
-        const frameTime = callback - lastFrame;
-        lastFrame = callback;
         game.update();
         game.draw(cont);
         requestAnimationFrame(animate);

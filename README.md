@@ -97,11 +97,11 @@ Readme images were screenshot from mentioned sites and wireframes were created i
 
 ## Wireframes
 
-Wireframes were created for both mobile and desktop.
+Wireframe for how the webpage will look.
 
 <details><summary> Wireframes </summary>
 
-![Desktop Wireframe](docs/images/wireframe-desktop.jpg)
+![Desktop Wireframe](docs/img/wireframe.png)
 
 </details>
 
@@ -194,6 +194,7 @@ Here are a list of technologies used in this project
 - [Color Contrast Accessibility Validator](https://color.a11y.com/) Tested color contrast through the website.
 - [W3C Markup Validation Service](https://validator.w3.org/) Validated HTML for the website
 - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_uri) Validated CSS for the website
+- [JShint](https://jshint.com/) Used to check JavaScript code for errors
 - [Adobe Photoshop CS6](https://www.adobe.com/ie/products/photoshop.html) Used to create and edit images used for the website.
 
 [Back to top](<#contents>)
@@ -219,34 +220,25 @@ This led to many issues being identified.
 
 ## Bugs
 
-* 
+* When spacebar pressed, too many speech bubbles were firing at the same time and the animations overlaped. Resolved by setting an interval between bubbles on spacebar press.
+
+* Character was able to go out of bounds both left and right. Created a distance tracker to make sure character could not go beyond bounds of game. 
 
 ## Unfixed Bugs
 
-* 
+* Animation speed is reliant on refresh rate of the device that it's used on. 
 
 ## Validator Testing 
 
 - HTML
-  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fsdalsosa.github.io%2FHeadshot-Photography)
+  - No errors were returned when passing through the official W3C html validator 
 - CSS
-  - No errors were found when passing through the official [(Jigsaw) validator](http://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https%3A%2F%2Fsdalsosa.github.io%2FHeadshot-Photography%2F&usermedium=all&vextwarning=&warning=1)
+  - No errors were found when passing through the official [(Jigsaw) validator](http://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https%3A%2F%2Fsdalsosa.github.io%2FTrumpelthinskin%2F&usermedium=all&vextwarning=&warning=1)
 
 ## Lighthouse Testing
 
 The website was also put through Lighthouse testing and passed all tests with a green result.
 
-<details><summary> Lighthouse Results </summary>
-
-![Lighthouse testing](docs/img/lighthouse.png)
-
-</details>
-
-There was a recommendation relating to changing the jpgs to webPs. I tried this but the quality of the images was drastically reduced so I changed back to jpg.
-
-There was another recommendation relating to changing the cache but this was on the server side.
-
-There was a recommendation relating to images not having a width and height. Images were set to 100% for responsiveness. 
 
 ## Color Contrast Testing
 
@@ -280,6 +272,8 @@ favicon image was taken from [nicepng.com](https://www.nicepng.com/ourpic/u2q8a9
 Trump sprite was inspired by a gif from the [Haze Trump site](https://www.paulmitchellkelly.com/portfolio/praise-haze-trump)
 
 Reporter sprite was created using [RPG Character Creator](https://store.steampowered.com/app/1154430/RPG_Character_Builder/) on steam
+
+For all things JavaScript, I learned from many hours of tutorials from [Frank's Laboratory](https://www.youtube.com/c/Frankslaboratory)
 
 
 
