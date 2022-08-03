@@ -11,29 +11,30 @@ window.addEventListener("load", function() {
             window.addEventListener("keydown", event => {
                 switch (event.key) {
                     case 'a':
-                        this.game.keys.a.pressed = true
-                        break
+                        this.game.keys.a.pressed = true;
+                        break;
                     case 'd':
-                        this.game.keys.d.pressed = true
-                        break
+                        this.game.keys.d.pressed = true;
+                        break;
                     case ' ':
                         this.game.keys.space.pressed = true;
-                        break  
+                        break;
                   }
-            })
+            });
+          
             window.addEventListener("keyup", event => {
                 switch (event.key) {
                     case 'a':
-                        this.game.keys.a.pressed = false
-                        break
+                        this.game.keys.a.pressed = false;
+                        break;
                     case 'd':
-                        this.game.keys.d.pressed = false
-                        break
+                        this.game.keys.d.pressed = false;
+                        break;
                     case ' ':
-                        this.game.keys.space.pressed = false
-                        break  
+                        this.game.keys.space.pressed = false;
+                        break;
                   }
-            })
+            });
         }
     }
 
@@ -70,7 +71,7 @@ window.addEventListener("load", function() {
             this.width = 250;
             this.height= 175;
             this.x = 50;
-            this.y = (canvas.height - this.height) *.82;
+            this.y = (canvas.height - this.height) * 0.82;
             this.frame = 0;
             this.velocity = 0;
             this.bubbles = [];
@@ -103,7 +104,7 @@ window.addEventListener("load", function() {
             context.drawImage(this.image, this.frame * this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
             this.bubbles.forEach(bubble => {
                 bubble.draw(context);
-            })
+            });
         }
 
         fireBubble() {
@@ -119,7 +120,7 @@ window.addEventListener("load", function() {
             this.width = 231;
             this.height= 180;
             this.x = canvas.width;
-            this.y = (canvas.height - this.height) *.82;
+            this.y = (canvas.height - this.height) * 0.82;
             this.frame = 0;
             this.velocity = -2;
 
@@ -205,7 +206,7 @@ window.addEventListener("load", function() {
                 a: { pressed: false },
                 d: { pressed: false },
                 space: { pressed: false }
-            }
+            };
             this.background = new Background(this);
             this.trees = new Foreground(this);
             this.distance = 0;
@@ -220,7 +221,7 @@ window.addEventListener("load", function() {
             this.trump.update();
             this.reporterInterval = Math.random() * (5000 - 100);
             if (this.reporterTimer > this.reporterInterval && this.distance <2000){
-                this.#addReporter();
+                this.addReporter();
                 this.reporterTimer = 0;
             } else {
                 this.reporterTimer++;
@@ -234,10 +235,12 @@ window.addEventListener("load", function() {
                 this.trump.bubbles.forEach(bubble => {
                     if (this.collisionDetect(bubble, reporter)) {
                         reporter.removeFromArray = true;
+                        bubble.removeFromArray = true;
                     }
-                })
+                });
             });
             this.reporters = this.reporters.filter(reporter => !reporter.removeFromArray);
+            this.trump.bubbles = this.trump.bubbles.filter(bubble => !bubble.removeFromArray);
         }
         
         draw(context) {
@@ -251,11 +254,11 @@ window.addEventListener("load", function() {
             if (this.distance >2300){
                 context.drawImage(document.getElementById('win'), 0, 0, this.width, this.height, 0, 0, this.width, this.height);
 
-            };
+            }
             
         }
 
-        #addReporter() {
+        addReporter() {
             this.reporters.push(new Reporter(this));
         }
 
@@ -263,7 +266,7 @@ window.addEventListener("load", function() {
             return( obj1.x < obj2.x + obj2.width-100 &&
                     obj2.x < obj1.x + obj1.width -100 &&
                     obj1.y < obj2.y + obj2.height && 
-                    obj2.y < obj1.y + obj1.height)
+                    obj2.y < obj1.y + obj1.height);
         }
     }
 
@@ -280,4 +283,4 @@ window.addEventListener("load", function() {
     }
 
     animate();
-})
+});

@@ -1,108 +1,347 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Trumpelthinkskin JavaScript Game
 
-Welcome Al,
+![Website layout](docs/images/responsive.png)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Portfolio 2 project as part of the Diploma in Full Stack Software Development by Code Institute.
+Trumplethinskin is a satirical game created with JavaScript depicting Donald Trump's attemps to get back to The White House.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+# Contents
 
-## Gitpod Reminders
+* [Objective](<#objective>)
+* [User Experience UX](<#user-experience-ux>)
+    * [Target Audience](<#target-audience>)
+    * [User Stories](<#user-stories>)
+* [Design](<#design-choices>)
+    * [Site Structure](<#site-structure>)
+    * [Colour Scheme](<#colour-scheme>)
+    * [Typography](<#typography>)
+    * [Imagery](<#imagery>)
+    * [Wireframes](<#wireframes>)
+* [Features](<#features>)
+    * [Game Load](<#game-load>)
+    * [Trump Sprite](<#trump-sprite>)
+    * [Reporter Sprite](<#reporter-sprite>)
+    * [Speech Bubble Sprite](<#speech-bubble-sprite>)
+    * [Multiple Reporters](<#multiple-reporters>)
+    * [Background Image](<#background-image>)
+    * [Foreground Image](<#foreground-image>)
+    * [Collision Detection](<#collision-detection>)
+    * [Win and Lose Detection](<#win-and-lose-detection>)
+* [Future Features](<#future-features>)
+* [Technologies Used](<#technologies-used>)
+* [Testing](<#testing>)
+    * [Bugs](<#bugs>)
+    * [Unfixed Bugs](<#unfixed-bugs>)
+    * [Validator Testing](<#validator-testing>)
+    * [Lighthouse Testing](<#lighthouse-testing>)
+    * [Color Contrast Testing](<#color-contrast-testing>)
+* [Deployment](<#deployment>)  
+* [Credits](<#credits>)
+    * [Developer Team](<#developer-team>)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+# Objective:
 
-`python3 -m http.server`
+To design a clean, intuitive, funny, retro style and fully responsive game in JavaScript.
 
-A blue button should appear to click: _Make Public_,
+The three main objectives are:
 
-Another blue button should appear to click: _Open Browser_.
+* ## Create a fun game in JavaScript without using any Libraries or Frameworks
+    I decided to go with a retro early 90s style game for this project without the use of JavaScript Libraries or Frameworks. I decided to create a game for this project as I always thought this would be something I could never do and wanted to challenge myself.
+* ## Control
+    The user is able to move the character left and right and fire their "Fake News" speech bubble at reporters to make them disappear so they don't hit the character.
+* ## Win and lose Scenarios
+    The user is able to win the game by making it to the end of the level without being hit by a reporter. On doing so, they get a message to inform them have won. The user will lost the game if they get hit by a reporter.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+[Back to top](<#contents>)
 
-A blue button should appear to click: _Make Public_,
+# User Experience (UX):
 
-Another blue button should appear to click: _Open Browser_.
+## Target Audience
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+* Users that are looking for a fun, satirical, web browser game to play. 
 
-To log into the Heroku toolbelt CLI:
+## User Stories
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### Visitor Goals
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+* Easily understand what the website is about.
+* Understand what the game is about and how to control the character.
+* Play the game and win!
 
-------
+[Back to top](<#contents>)
 
-## Release History
+# Design Choices
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+## Site Structure
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+Trumpelthinskin is a simple and clean layout with a canvas and some basic instructions in html.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Colour Scheme
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+![Colour-scheme](docs/images/coolor.png)
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+The colour scheme used for this project was chosen from using a dropper tool in photoshop 
+on one of the headshot images to maintain a similar aesthetic between  the website and 
+headshot images. [Coolor](https://coolors.co/ffffff-e3e6e8-b88845-2a2a2d-141519).
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+* White `#FFFFFF`
+* Platinum `#E3E6E8`
+* Dark Goldenrod `#B88845`
+* Raisin Black `2A2A2D`
+* Eerie Black `#141519`
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+## Typography
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+I chose the font **Player** for the headings and the font **Inter**  for all other text content 
+in the website as I liked the clean look of both fonts.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+The fonts were sourced from [Google Fonts](https://fonts.google.com/).
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+## Imagery
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+All photos were taken by me, the photographer and the logo was designed by me in photoshop. 
+Readme images were screenshot from mentioned sites and wireframes were created in photoshop.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+## Wireframes
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+Wireframes were created for both mobile and desktop.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+<details><summary> Wireframes </summary>
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+![Desktop Wireframe](docs/images/wireframe-desktop.jpg)
 
-------
+![Mobile Wireframe](docs/images/wireframe-mobile.jpg)
 
-## FAQ about the uptime script
+</details>
 
-**Why have you added this script?**
+[Back to top](<#contents>)
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+# Features
 
-**How will this affect me?**
+Headshot is designed as a one page structured website, making it very clean and logically laid out 
+so the user clearly knows what the site is about and what services they can avail of.
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+The language is easy to understand and the navigation is intuitive with a consistent color scheme 
+that adds to the style of the photographers photos.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+This is a fully responsive website. 
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+## Game Load
 
-**So….?**
+When viewing the main page on a desktop, there is a navbar present which has 6 links to the sections of the website.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+![Desktop navbar](docs/images/navbar.png)
 
-**Can I opt out?**
+When viewing the main page on a mobile device, the navbar disappears.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+There is a hamburger menu showing at all times on all devices at the top left of the screen. This contains 6 links 
+to the different sections of the website. 
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+The hamburger menu was modified from code created by [Álvaro](https://codepen.io/alvarotrigo/pen/wvrzPWL)
 
-**Anything more?**
+![Responsive hamburger menu](docs/images/hamburger.png)
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+## Trump Sprite
 
----
+The Main section is accessible from both the Navbar and the hamburger menu from the HOME link.
 
-Happy coding!
+The Main Section is the landing page of the website and the first part that the user will see.
+
+There is a large background image with the logo, name and brief description of what the site is about overlayed.
+
+There is a scroll down animation hint on the bottom left of the main screen to entice the user to scroll down 
+through the site. 
+
+The scroll down animation was modified from code created by [Deepak K Vijayan](https://codepen.io/2xsamurai/pen/WwmjKQ)
+
+![Home page desktop view](docs/images/main.png)
+
+## Reporter Sprite
+
+The About section is accessible from both the Navbar and the hamburger menu from the ABOUT link.
+
+This section contains a headshot photo of the photographer and a description of them so the user 
+can get to know them and understand their style of photography.
+
+![About Section desktop view](docs/images/about.png)
+
+## Speech Bubble Sprite
+
+The Gallery section is accessible from both the Navbar and the hamburger menu from the Gallery link.
+
+This section contains 6 images that have a hover animation.
+
+![Gallery Section desktop view](docs/images/gallery.png)
+
+There is also a lightbox implemented with CSS that appears when the images are clicked to give a higher 
+resolution image to the user. 
+
+The gallery Lightbox was modified from code created by [Kevin Powell](https://codepen.io/kevinpowell/pen/LgMLao)
+
+![Gallery Lightbox desktop view](docs/images/gallery-lightbox.png)
+
+## Multiple Reporters
+
+This section has an explanation of what retouching is and also a before/after slider created in CSS. 
+Before/After slider was modified from code created by [Lea Varou](https://lea.verou.me/2014/07/image-comparison-slider-with-pure-css/) 
+
+![Retouch Section desktop view](docs/images/retouch.png)
+
+## Background Image
+
+This section contains three testimonials from previous clients of Headshot Photography.
+
+![Testimonial Section desktop view](docs/images/testimonial.png)
+
+## Foreground Image
+
+The contact section has a google map, contact information, and a contact form in which the user 
+can contact the photographer with a message.
+
+The form currently submits to the Code Institute form dump.
+
+![Contact Section desktop view](docs/images/contact.png)
+
+## Collision Detection
+
+The footer contains the social media icons that link to the main sites as headshot does not 
+have profiles on social media.
+
+![Footer desktop view](docs/images/footer.png)
+
+## Win and Lose Detection
+
+The footer contains the social media icons that link to the main sites as headshot does not 
+have profiles on social media.
+
+![Footer desktop view](docs/images/footer.png)
+
+[Back to top](<#contents>)
+
+# Future Features
+
+* Sound to go with the game such as a background music track and sound effects
+* Add more characters and different scenarios
+* Power ups for trump and other characters
+* Scoring system and a leader table
+* More levels of increasing difficulties
+
+[Back to top](<#contents>)
+
+# Technologies Used
+
+Here are a list of technologies used in this project
+
+- [GitHub](https://github.com/) Used to host website
+- [Gitpod](https://www.gitpod.io/) Used as IDE
+- [Git](https://git-scm.com/) Version control
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) Used to input the website content
+- [CSS](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics) Used to style the website content
+- [JavaScript](hhttps://www.javascript.com/) Used to create the game
+- [Google Fonts](https://fonts.google.com/) Used to select fonts for the website
+- [Google Developer Tools](https://developers.google.com/web/tools/chrome-devtools) Used for testing responsiveness of the website
+- [Tiny.jpg](https://tinyjpg.com/) Reduced size of images.
+- [Favicon.io](https://favicon.io/) Used to convert the logo to a favicon.
+- [AmIResponsive](http://ami.responsivedesign.is/) Used to create responsive image used at the top of the readme
+- [Coloors](https://coolors.co/) Used to display the color palette image in the readme.
+- [Color Contrast Accessibility Validator](https://color.a11y.com/) Tested color contrast through the website.
+- [W3C Markup Validation Service](https://validator.w3.org/) Validated HTML for the website
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_uri) Validated CSS for the website
+- [Adobe Photoshop CS6](https://www.adobe.com/ie/products/photoshop.html) Used to create and edit images used for the website.
+
+[Back to top](<#contents>)
+
+# Testing 
+
+I have spent many many hours testing this site and had family and friends go through it for me on different devices. 
+
+This led to many issues being identified.
+
+## Game
+
+| TEST | OUTCOME | PASS / FAIL |
+|:---:|:---:|:---:|
+| Trump Sprite animation | Main character sprite animates correctly | PASS |
+| Reporter Sprite animation | CNN Reporter sprite animates correctly | PASS |
+| Speech Bubble  | When spacebar is pressed, the main character fires his speech bubble which animates| PASS |
+| Movement | When a and d are pressed, the character moves left and right respectively | PASS |
+| Background parallax | backgroun and foreground move a different speeds giving a parallax effect | PASS |
+| Collision Detection | detect when main character gets hit by reporter and when speech bubbles hit a reporter | PASS |
+| Lose Scenario | When main character gets hit by a reporter, a lose message appears | PASS |
+| Win Scenario | When main character makes it to the end of the level, a "win" message appears | PASS |
+
+## Bugs
+
+* The google map also presented an issue with responsiveness. It doesn't have any responsiveness as the dimensions are set in the iframe. For this reason. I created two divs and have one set to shown and the other set to hidden. On larger screen sizes, the div containing the larger map is shown and the smaller map div is hidden. On smaller screen sizes, the div with the small map is shown and the larger one is hidden. This solved the issue.
+
+* The before/after slider also does not have responsiveness so I had to use a media query to set the images width manually in order for it to fit in smaller devices.
+
+## Unfixed Bugs
+
+Due to the fact that I chose to use only HTML and CSS as that is what this project is being graded on, there are better ways to implement features such as the slider in the retouch section and the lightbox in the gallery section. These are not necessarily bugs, more so, opportunities for improvement using JS.
+
+## Validator Testing 
+
+- HTML
+  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fsdalsosa.github.io%2FHeadshot-Photography)
+- CSS
+  - No errors were found when passing through the official [(Jigsaw) validator](http://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https%3A%2F%2Fsdalsosa.github.io%2FHeadshot-Photography%2F&usermedium=all&vextwarning=&warning=1)
+
+## Lighthouse Testing
+
+The website was also put through Lighthouse testing and passed all tests with a green result.
+
+<details><summary> Lighthouse Results </summary>
+
+![Lighthouse testing](docs/images/lighthouse.png)
+
+</details>
+
+There was a recommendation relating to changing the jpgs to webPs. I tried this but the quality of the images was drastically reduced so I changed back to jpg.
+
+There was another recommendation relating to changing the cache but this was on the server side.
+
+There was a recommendation relating to images not having a width and height. Images were set to 100% for responsiveness. 
+
+## Color Contrast Testing
+
+The website was also put through colour contrast accessibility validator testing and passed with no contrast issues.
+
+![Color Contrast testing](docs/images/ccav.jpg)
+
+[Back to top](<#contents>)
+
+# Deployment
+
+Deployment was done using GitHub pages. The steps to deploy are as follows: 
+
+  - Open GitHub repository, 
+  - Navigate to the Settings tab
+  - Click pages link in the left column
+  - In the source section drop-down menu, select the Main Branch
+  - Click save
+  - The page will be automatically refreshed with a link to the deployed website. 
+
+The live link can be found here - https://sdalsosa.github.io/Headshot-Photography/
+
+[Back to top](<#contents>)
+
+# Credits
+
+Trump Win and Lose image was modified from the original image found on Greg Fuzion's [blog](https://gregcfuzion.files.wordpress.com/2017/07/trump.jpg)
+
+favicon image was taken from [nicepng.com](https://www.nicepng.com/ourpic/u2q8a9u2e6e6a9r5_donald-trump-donald-trump-pixel-art/)
+
+Trump sprite was inspired by a gif from the [Haze Trump site](https://www.paulmitchellkelly.com/portfolio/praise-haze-trump)
+
+Reporter sprite was created using [RPG Character Creator](https://store.steampowered.com/app/1154430/RPG_Character_Builder/) on steam
+
+
+
+[Back to top](<#contents>)
+
+## Developer
+
+* Alan Egan - Junior Software Developer at Code Institute
+
+[Back to top](<#contents>)

@@ -5,10 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Trumpelthinskin - JavaScript Game</title>
 </head>
 <body>
+    <div id="heading">
+        <h1>Trumpelthinskin - JavaScript Web Browser Game</h1>
+    </div>
     <canvas class="canvas"></canvas>
 
     <!-- Trump Sprite -->
@@ -18,10 +25,10 @@
     <img src="./assets/img/bubble.png" id="bubbleSprite">
 
     <!-- CNN reporter Sprite -->
-    <img src="./assets/img/cnn.png" id="cnnSprite">
+    <img src="./assets/img/cnn1.png" id="cnnSprite">
 
     <!-- Background image -->
-    <img src="./assets/img/background.png" id="bgImage">
+    <img src="./assets/img/background.jpg" id="bgImage">
 
     <!-- Foreground Trees -->
     <img src="./assets/img/trees.png" id="trees">
@@ -32,6 +39,22 @@
     <!-- Win Scenario -->
     <img src="./assets/img/win.png" id="win">
 
+    <div id="main">
+        <div id ="about">
+            <h2>Instructions:</h2>
+            <p>Move left: a</p>
+            <p>Move right: d</p>
+            <p>Fire Speech Bubble: Spacebar</p>
+        </div>
+
+        <div id ="objective">
+            <h2>Objective:</h2>
+            <p>Help Donald get back in The White House</p>
+            <p>Avoid those pesky CNN reporters</p>
+            <p>Use your "Fake News" Speech Bubble to take them out!</p>
+        </div>
+    </div>
+    
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
