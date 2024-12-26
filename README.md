@@ -259,7 +259,7 @@ Deployment was done using GitHub pages. The steps to deploy are as follows:
   - Click save
   - The page will be automatically refreshed with a link to the deployed website. 
 
-The live link can be found here - https://sdalsosa.github.io/Headshot-Photography/
+The live link can be found here - https://sdalsosa.github.io/Trumpelthinskin
 
 [Back to top](<#contents>)
 
